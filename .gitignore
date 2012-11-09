@@ -1,0 +1,8 @@
+.build/*
+.redo/*
+target/*
+!target/manifest.mf.do
+target/cache
+lib/redo/*.pyc
+lib/redo/version/*.pyc
+src/main/cache

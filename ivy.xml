@@ -1,0 +1,10 @@
+<ivy-module version="1.0">
+  <info organisation="your.project" module="standalone" revision="working" />
+  <configurations>
+    <conf name="default" visibility="public" />
+    <conf name="test" visibility="public" extends="default" />
+  </configurations>
+  <dependencies>
+    <dependency org="joda-time" name="joda-time" rev="1.6.2" conf="default->*"/>
+  </dependencies>
+</ivy-module>
