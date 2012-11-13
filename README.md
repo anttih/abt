@@ -77,6 +77,22 @@ fact, if you now just compile, and you didn't change any files, nothing happens:
 That 38 ms is redo invoking python and checking if any of the files have
 changed.
 
+You can get a list of available commands with `help`:
+    
+    $ ./abt help
+
+    Usage: ./abt <task> [arguments]
+
+    Available tasks:
+
+        clean            Clean target directories
+        compile          Compile all sources
+        scala <args>     Execute scala command with the main classpath, passing in optional arguments
+        help             Show usage (you're looking at it)
+        package          Create a jar
+        run              Run the program
+
+
 ## FAQ
 
 ### Is it any good?
