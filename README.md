@@ -19,7 +19,7 @@ you want to do is run a few carefully crafted shell commands.
 So let's break this down, what are the pieces we need for building a scala
 project? We need to be able to
 
-* specify dependencies and retrive them,
+* specify dependencies and retrieve them,
 * compile scala files _incrementally_,
 * build a class path from the dependencies and the compiled classes,
 * run tasks which can depend on other tasks, and run only the tasks which are
