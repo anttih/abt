@@ -8,18 +8,18 @@ Build tools are among those problems where almost every project has unique
 requirements. It's really hard to implement a tool to satisfy all those needs.
 Content Management Systems historically suffer from the same syndrome, they all
 tend to suck in their own unique ways. With build tools, the paths and tasks
-are always slightly different and Convention over configuration rarely works
+are always slightly different and Convention Over Configuration rarely works
 in practice. Many of the current build tools can do many things and are highly
 configurable, but at a cost: the learning curve for setting up even a slightly
 different build process can be high. These build tools accomplish what they do
 by abstracting dependency retrieval, configuration and running tasks into their
-own APIs and conventions; and this is expected, but is often too much when all
+own APIs and conventions; this is expected, but is often too much when all
 you want to do is run a few carefully crafted shell commands.
 
 So let's break this down, what are the pieces we need for building a scala
-project? We need to be able to
+project? We need to be able to:
 
-* specify dependencies and retrieve them,
+* Specify dependencies and retrieve them,
 * compile scala files _incrementally_,
 * build a class path from the dependencies and the compiled classes,
 * run tasks which can depend on other tasks, and run only the tasks which are
@@ -29,7 +29,7 @@ project? We need to be able to
 
 **I believe you can build a small, fast and easily customizable build system
 on your own by choosing tools designed to fill those specific needs**. The
-tools I have chosen are
+tools I have chosen are:
 
 * **[ivy][]**, for specifying dependencies, retrieving, and building a classpath
   of those dependencies,
@@ -49,7 +49,7 @@ tools I have chosen are
 [redo]: https://github.com/apenwarr/redo
 
 **This project is an example Scala project skeleton of those pieces packaged
-together.** All of the tools are bundled, you only need to have scala, python
+together.** All of the tools are bundled. You only need to have scala, python
 and bash installed.
 
 You can run the example build by issuing `./abt run`.
@@ -69,7 +69,7 @@ the program:
     Hello world! Time is 22:53.
 
 redo saw that there was nothing left to do except run the program. In
-fact, if you now just compile, and you didn't change any files, nothing happens:
+fact, if you now just compile—and didn't change any files—nothing happens:
 
     $ time ./abt compile
     ./abt compile  0.02s user 0.01s system 95% cpu 0.038 total
@@ -104,7 +104,7 @@ they do.
 
 Well, you see, this is not really a build tool in itself. This is an idea of
 one. _You_ have to write your _own_ build script. This is just my idea of the
-best tools for someone to write they're own scala build system on top, and they
+best tools for someone to write their own scala build system on top, and they
 are packaged nicely together. Just fork and mod.
 
 ### Does it support Windows builds?
