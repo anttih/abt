@@ -16,7 +16,7 @@ by abstracting dependency retrieval, configuration and running tasks into their
 own APIs and conventions; and this is expected, but is often too much when all
 you want to do is run a few carefully crafted shell commands.
 
-So let's brake this down, what are the pieces we need for building a scala
+So let's break this down, what are the pieces we need for building a scala
 project? We need to be able to
 
 * specify dependencies and retrive them,
