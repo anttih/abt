@@ -78,7 +78,7 @@ Available tasks:
     run              Run the program
 USAGE
   ;;
-  *) $0 help
+  *) echo "Invalid task: $1"; $0 help
   ;;
 esac
 
