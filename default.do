@@ -35,9 +35,8 @@ case "$1" in
   package) redo-ifchange $TARGET_DIR/hello.jar ;;
   compile) redo-ifchange .build/class_files ;;
   clean)
-    rm .build/*
+    for file in $(redo-targets); do [ -f $file ] && rm -v $file; done
     [ -d $TARGET_DIR/main ] && rm -r $TARGET_DIR/main
-    [ -f $TARGET_DIR/hello.jar ] && rm $TARGET_DIR/hello.jar
     exit 0
     ;;
   .build/class_files)
