@@ -37,7 +37,6 @@ case "$1" in
   clean)
     for file in $(redo-targets); do [ -f $file ] && rm -v $file; done
     [ -d $TARGET_DIR/main ] && rm -r $TARGET_DIR/main
-    exit 0
     ;;
   .build/class_files)
     scala_files src/main | xargs redo-ifchange .build/classpath.main.txt
