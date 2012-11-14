@@ -29,7 +29,9 @@ classpath_main () {
 # <https://groups.google.com/forum/?fromgroups=#!topic/redo-list/usKuE2yOsxo>
 exec 51>&-
 
-case "$1" in
+if [ "$#" -eq 0 ]; then cmd=help; else cmd=$1; fi
+
+case "$cmd" in
   run) redo-ifchange .build/class_files && scala -classpath $(classpath_main) HelloWorld ;;
   scala) redo-ifchange .build/class_files && (shift; scala -classpath $(classpath_main) "$@") ;;
   package) redo-ifchange $TARGET_DIR/hello.jar ;;
@@ -64,7 +66,6 @@ case "$1" in
     ;;
   help)
     cat >&2 <<USAGE
-
 Usage: ./abt <task> [arguments]
 
 Available tasks:
@@ -76,6 +77,8 @@ Available tasks:
     package          Create a jar
     run              Run the program
 USAGE
+  ;;
+  *) $0 help
   ;;
 esac
 
