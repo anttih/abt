@@ -1,1 +1,58 @@
-default.do
+#!/bin/bash
+
+export BUILD_DIR=$PWD/build
+export RESOURCES_DIR=$PWD/src/main/resources
+export LIB_PATH=$(echo $PWD/lib/*.jar | sed 's/ /:/g')
+export PATH=$PWD/bin:$PATH
+
+scala_files () {
+    find $@ -type f -name "*.scala"
+}
+
+compile () {
+    scala_files $1 | \
+      xargs zinc -log-level warn -nailed -classpath $(classpath_main) -d $BUILD_DIR/main >&2
+}
+
+classpath_main () {
+  echo $LIB_PATH:`cat $BUILD_DIR/main.classpath`:$BUILD_DIR/main:$RESOURCES_DIR
+}
+
+export -f scala_files
+export -f compile
+export -f classpath_main
+
+# redo will hang on a pipe to the zinc command when the nailgun server first
+# starts. It just happens to be the file descriptor 51, we close it here.
+# This problem should be solved elsewhere, but where?
+# See discussion:
+# <https://groups.google.com/forum/?fromgroups=#!topic/redo-list/usKuE2yOsxo>
+exec 51>&-
+
+if [ "$#" -eq 0 ]; then cmd=help; else cmd=$1; fi
+
+case "$cmd" in
+  run) redo-ifchange $BUILD_DIR/class_files && scala -classpath $(classpath_main) HelloWorld ;;
+  scala) redo-ifchange $BUILD_DIR/class_files && (shift; scala -classpath $(classpath_main) "$@") ;;
+  package) redo-ifchange $BUILD_DIR/hello.jar ;;
+  compile) redo-ifchange $BUILD_DIR/class_files ;;
+  clean)
+    echo `redo-targets` | xargs rm -v
+    [ -d $BUILD_DIR/main ] && rm -r $BUILD_DIR/main
+    ;;
+  help)
+    cat >&2 <<USAGE
+Usage: ./abt <task> [arguments]
+
+Available tasks:
+
+    clean            Clean target directories
+    compile          Compile all sources
+    scala <args>     Execute scala command with the main classpath, passing in optional arguments
+    help             Show usage (you're looking at it)
+    package          Create a jar
+    run              Run the program
+USAGE
+  ;;
+esac
+
