@@ -1,1 +1,2 @@
-java -jar lib/ivy-2.3.0-rc1.jar "$@"
+#!/bin/bash
+java -jar ../lib/ivy-2.3.0-rc1.jar "$@"
