@@ -1,4 +1,3 @@
-#!/bin/bash
 redo-ifchange manifest.mf class_files
 
 find main -name "*.class"

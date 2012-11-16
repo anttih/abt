@@ -1,4 +1,3 @@
-#!/bin/bash
 #
 # You might want to pull some of this stuff from version control
 #

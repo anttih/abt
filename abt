@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
 export BUILD_DIR=$PWD/build
 RESOURCES_DIR=$PWD/src/main/resources
