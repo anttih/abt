@@ -1,9 +1,10 @@
 #!/usr/bin/env bash
 
-export BUILD_DIR=$PWD/build
-RESOURCES_DIR=$PWD/src/main/resources
-LIB_PATH=$(echo $PWD/lib/*.jar | sed 's/ /:/g')
-PATH=$PWD/bin:$PATH
+DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
+export BUILD_DIR=$DIR/build
+RESOURCES_DIR=$DIR/src/main/resources
+LIB_PATH=$(echo $DIR/lib/*.jar | sed 's/ /:/g')
+PATH=$DIR/bin:$PATH
 
 scala_files () {
     find $@ -type f -name "*.scala"
