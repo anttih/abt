@@ -1,3 +1,4 @@
+#!/usr/bin/env bash
 #
 # You might want to pull some of this stuff from version control
 #
