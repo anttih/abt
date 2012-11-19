@@ -55,8 +55,8 @@ and bash installed.
 You can run the example build by issuing `./abt run`.
 
     $ ./abt run
-    redo  .build/class_files
-    redo    .build/classpath.main.txt
+    redo  build/class_files
+    redo    build/main.classpath
     Hello world! Time is 22:52.
 
 What just happened? Before we can run the program we need to compile the scala
@@ -80,7 +80,6 @@ changed.
 You can get a list of available commands with `help`:
     
     $ ./abt help
-
     Usage: ./abt <task> [arguments]
 
     Available tasks:
